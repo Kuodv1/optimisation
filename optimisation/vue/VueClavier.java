@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class VueClavier extends JPanel{
 
@@ -27,11 +28,24 @@ public class VueClavier extends JPanel{
 		clavier[3][9] = 'B';
 		for(int i = 0; i < 4;i++) {
 			for(int j = 0; j<10;j++) {
-				JLabel eltAdd = new JLabel(clavier[i][j]+"");
+				JLabel eltAdd = new JLabel(clavier[i][j]+"",SwingConstants.CENTER);
 				eltAdd.setBackground(Color.WHITE);
 				eltAdd.setOpaque(true);
 				this.add(eltAdd);
 				tabLabel[i][j] = eltAdd;
+			}
+		}
+		
+		clavier[1][1] = 'C';
+		majClavier(clavier);
+	}
+	
+	
+	//Fonction pour changer le contenu du clavier via un clavier
+	public void majClavier(char[][] newClavier) {
+		for(int i = 0; i<4;i++) {
+			for(int j = 0; j<10;j++) {
+				tabLabel[i][j].setText(newClavier[i][j]+"");
 			}
 		}
 	}
