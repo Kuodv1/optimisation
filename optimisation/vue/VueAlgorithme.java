@@ -17,7 +17,5 @@ public abstract class VueAlgorithme extends JPanel{
 		this.m = m;
 	}
 	
-	public void maj(Modele m){
-		
-	}
+	public abstract void maj();
 }

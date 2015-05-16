@@ -9,12 +9,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import optimisation.modele.Clavier;
+
 public class VueClavier extends JPanel{
 
 	protected GridLayout grid;
 	protected JLabel[][] tabLabel;
 	
-	public VueClavier() {
+	public VueClavier(Clavier cl) {
 		super(new BorderLayout());
 		//this.setPreferredSize(new Dimension(200,50));
 		grid = new GridLayout(4,10);
@@ -23,9 +25,7 @@ public class VueClavier extends JPanel{
 		grid.setVgap(2);
 		this.setBackground(Color.BLACK);
 		this.setLayout(grid);
-		char [][] clavier = new char[4][10];
-		clavier[2][3] = 'A';
-		clavier[3][9] = 'B';
+		char [][] clavier = cl.getClavier();
 		for(int i = 0; i < 4;i++) {
 			for(int j = 0; j<10;j++) {
 				JLabel eltAdd = new JLabel(clavier[i][j]+"",SwingConstants.CENTER);
@@ -36,8 +36,7 @@ public class VueClavier extends JPanel{
 			}
 		}
 		
-		clavier[1][1] = 'C';
-		majClavier(clavier);
+	//	majClavier(clavier);
 	}
 	
 	

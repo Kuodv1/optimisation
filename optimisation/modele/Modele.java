@@ -46,6 +46,10 @@ public class Modele extends Observable{
 		return algo.getNom();
 	}
 
+	public Algorithme getAlgo() {
+		return algo;
+	}
+	
 	public void changementAffichage() {
 
 		t = new Thread() {
