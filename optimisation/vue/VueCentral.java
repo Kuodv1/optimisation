@@ -7,8 +7,8 @@ import java.util.Observer;
 import javax.swing.JPanel;
 
 import optimisation.modele.Modele;
-import optimisation.vue.autre.VueAlgorithmeAutre;
-import optimisation.vue.genetique.VueAlgorithmeGenetique;
+import optimisation.vue.tabou.VueAlgorithmeTabou;
+import optimisation.vue.recuit.VueAlgorithmeRecuitSimule;
 
 public class VueCentral extends JPanel implements Observer{
 
@@ -17,7 +17,7 @@ public class VueCentral extends JPanel implements Observer{
 	
 	public VueCentral(Modele m) {
 		super(new BorderLayout());
-		va = new VueAlgorithmeGenetique(m);
+		va = new VueAlgorithmeRecuitSimule(m);
 		m.addObserver(this);
 		this.m = m;
 		this.add(va);
@@ -31,13 +31,13 @@ public class VueCentral extends JPanel implements Observer{
 			  //new Thread(new Runnable() {
 			  //    public void run() {
 						remove(va);
-				    	  if(m.getNomAlgo().equals("Algorithme Genetique")) {
-					    	  VueAlgorithmeGenetique vg = new VueAlgorithmeGenetique(m);
-					    	  va = vg;
+				    	  if(m.getNomAlgo().equals("Algorithme Recuit Simule")) {
+					    	  VueAlgorithmeRecuitSimule vgs = new VueAlgorithmeRecuitSimule(m);
+					    	  va = vgs;
 					    	  //this.add(vg,BorderLayout.CENTER);
-				    	  } else if(m.getNomAlgo().equals("AlgoAutre")){
-				    		  VueAlgorithmeAutre vaa = new VueAlgorithmeAutre(m);
-				    		  va = vaa;
+				    	  } else if(m.getNomAlgo().equals("Recherche Tabou")){
+				    		  VueAlgorithmeTabou vat = new VueAlgorithmeTabou(m);
+				    		  va = vat;
 				    	  }
 			    	  add(va,BorderLayout.CENTER);
 			    	  va.repaint();

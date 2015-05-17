@@ -3,8 +3,8 @@ package optimisation.modele;
 import java.util.Observable;
 
 import optimisation.modele.algorithme.Algorithme;
-import optimisation.modele.algorithme.AlgorithmeAutre;
-import optimisation.modele.algorithme.AlgorithmeGenetique;
+import optimisation.modele.algorithme.AlgorithmeTabou;
+import optimisation.modele.algorithme.AlgorithmeRecuitSimule;
 
 public class Modele extends Observable{
 
@@ -13,7 +13,7 @@ public class Modele extends Observable{
 	protected Thread t;
 	
 	public Modele() {
-		algo = new AlgorithmeGenetique();
+		algo = new AlgorithmeRecuitSimule();
 		codeUpdate =0;
 	}
 	
@@ -21,14 +21,14 @@ public class Modele extends Observable{
 		if(!algo.equals(this.algo.getNom())) { //si changement d'algo
 			codeUpdate = 1;
 			switch(algo) {
-			case "Algorithme Genetique":
-				this.algo =new AlgorithmeGenetique();
-				System.out.println("Algo genetique choisi");
+			case "Algorithme Recuit Simule":
+				this.algo =new AlgorithmeRecuitSimule();
+				System.out.println("Algo Recuit Simule choisi");
 				break;
 	
-			case "AlgoAutre":
-				System.out.println("AlgoAutre");
-				this.algo = new AlgorithmeAutre();
+			case "Recherche Tabou":
+				System.out.println("Algo Tabou");
+				this.algo = new AlgorithmeTabou();
 				break;
 				
 				default:

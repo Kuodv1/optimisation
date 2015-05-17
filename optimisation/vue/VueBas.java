@@ -20,7 +20,7 @@ public class VueBas extends JPanel implements Observer{
 		super(new BorderLayout());
 		this.m = m;
 		m.addObserver(this);
-		String[] algoString = { "Algorithme Genetique","AlgoAutre"};
+		String[] algoString = { "Algorithme Recuit Simule","Recherche Tabou"};
 		JComboBox algoList = new JComboBox(algoString);
 		
 		class ecouteurComboBox implements ActionListener {

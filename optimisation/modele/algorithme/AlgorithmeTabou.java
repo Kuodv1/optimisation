@@ -2,11 +2,11 @@ package optimisation.modele.algorithme;
 
 import optimisation.modele.Clavier;
 
-public class AlgorithmeAutre implements Algorithme{
+public class AlgorithmeTabou implements Algorithme{
 	
 	protected Clavier bestOf;
 	
-	public AlgorithmeAutre() {
+	public AlgorithmeTabou() {
 		bestOf = new Clavier();
 	}
 	
@@ -16,7 +16,7 @@ public class AlgorithmeAutre implements Algorithme{
 	
 	@Override
 	public String getNom() {
-		return "AlgoAutre";
+		return "Recherche Tabou";
 	}
 
 }
