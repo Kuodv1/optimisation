@@ -1,6 +1,7 @@
 package optimisation.modele;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Clavier {
@@ -51,5 +52,9 @@ public class Clavier {
 	
 	public boolean estVide(int ligne, int colonne) {
 		return clavier[ligne][colonne]<65;
+	}
+	
+	public boolean equals(Object test) {
+		return Arrays.deepEquals(getClavier(),((Clavier)test).getClavier());
 	}
 }
