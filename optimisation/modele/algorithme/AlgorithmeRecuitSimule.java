@@ -53,17 +53,6 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 		this.energie = 0;
 	}
 	
-	public void initialisationLettre()
-	{
-		/*int cpt,i=2,j=5;
-		lettre[2][5]='e';
-		for(cpt=0;cpt<25;cpt++)
-		{
-			
-		}*/
-	}
-	
-	
 	public void recuitSimule()
 	{
 		char[][] s  = copyTab(lettre);
