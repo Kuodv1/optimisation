@@ -2,6 +2,8 @@ package optimisation.modele.algorithme;
 
 import java.util.ArrayList;
 
+import optimisation.modele.Clavier;
+
 
 public class AlgorithmeRecuitSimule implements Algorithme{
 	
@@ -47,11 +49,20 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 								{' ','o','q','x','c','t','u','m',' ',' '},
 								{' ','r','k','p','v','j','n','b',' ',' '},
 	  						};
+	private Clavier clavier;
 	
 	public AlgorithmeRecuitSimule() {
-		this.temperature = 0;
+		this.temperature = 100;
+		this.energie = 0;
+		this.clavier = new Clavier();
+		//this.lettre=copyTab(clavier.getClavier());
+	}
+	
+	public AlgorithmeRecuitSimule(int temperature) {
+		this.temperature = temperature;
 		this.energie = 0;
 	}
+	
 	
 	public void recuitSimule()
 	{
@@ -74,7 +85,7 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 				}
 				s=sn;
 			}
-			temperature*=0.9999;
+			temperature*=0.999;
 		}
 
 		
@@ -122,8 +133,6 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 				a+= ods[i][j] * distance(i,j,let);
 			}
 		}
-		
-
 		
 		return a;
 	}
@@ -192,7 +201,13 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 		return tampon;
 	}
 	
-	public void getClavier(char[][] let)
+	public Clavier getClavier()
+	{
+		clavier.setClavier(tampon);
+		return clavier;
+	}
+	
+	public void getClavierString(char[][] let)
 	{
 		StringBuilder s = new StringBuilder("");
 		int i,j;
@@ -207,6 +222,7 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 		}
 		System.out.println(s.toString());
 	}
+	
+
 
 }
-
