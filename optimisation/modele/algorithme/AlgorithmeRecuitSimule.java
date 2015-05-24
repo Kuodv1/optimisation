@@ -43,6 +43,9 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 							  };
 	private int energie;
 	private double temperature;
+	private double tps = 0;
+	private double k;
+	private ArrayList<char[][]> parcours;
 	private char[][] tampon ={
 								{' ',' ','a','l','e','y','d',' ',' ',' '},
 								{' ','g','f','w','z','h','s','i',' ',' '},
@@ -52,15 +55,19 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 	private Clavier clavier;
 	
 	public AlgorithmeRecuitSimule() {
-		this.temperature = 100;
+		this.temperature = 10000;
 		this.energie = 0;
 		this.clavier = new Clavier();
-		//this.lettre=copyTab(clavier.getClavier());
+		this.tps = 50000;
+		this.parcours = new ArrayList<char[][]>();
 	}
 	
 	public AlgorithmeRecuitSimule(int temperature) {
 		this.temperature = temperature;
 		this.energie = 0;
+		this.clavier = new Clavier();
+		this.tps = 30000;
+		this.parcours = new ArrayList<char[][]>();
 	}
 	
 	
@@ -68,11 +75,12 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 	{
 		char[][] s  = copyTab(lettre);
 		char[][] sn = {};
+		int temps = 0;
 		int e = calculEnergie(s);
 		int en=0;
 		double t = temperature/10;
 		
-		while(t<=temperature)
+		while(t<=temperature && temps<tps)
 		{
 			sn = voisin(s);
 			en = calculEnergie(sn);
@@ -82,14 +90,15 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 				{
 					tampon = copyTab(sn);
 					e=en;
+					temps=0;
+					parcours.add(getMajuscule(copyTab(sn)));
 				}
 				s=sn;
 			}
-			temperature*=0.999;
+			temps+=1;
+			temperature*=k;
+			
 		}
-
-		
-
 	}
 	
 	public char[][] copyTab(char[][] let){
@@ -112,6 +121,12 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 		int x2= (int)Math.ceil(Math.random()*3);
 		int y1= (int)Math.ceil(Math.random()*9);
 		int y2= (int)Math.ceil(Math.random()*9);
+		
+		while(l[x1][y1]==' ' && l[x2][y2]==' ') // Vérification qu'on ne change pas une case vide avec une autre vide
+		{
+			y1= (int)Math.ceil(Math.random()*9);
+			y2= (int)Math.ceil(Math.random()*9);
+		}
 		
 		char tmp;
 		tmp = l[x1][y1];
@@ -182,6 +197,11 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 		return energie;
 	}
 	
+	public void setK(double k)
+	{
+		this.k = k;
+	}
+	
 	public double temperature()
 	{
 		return temperature;
@@ -198,13 +218,41 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 	
 	public char[][] getTampon()
 	{
+		int i,j;
+		for(i=0;i<4;i++)
+		{
+	
+			for(j=0;j<10;j++)
+			{
+				tampon[i][j]=Character.toUpperCase(tampon[i][j]);
+			}
+		}
 		return tampon;
+	}
+	
+	public char[][] getMajuscule(char[][] l )
+	{
+		int i,j;
+		for(i=0;i<4;i++)
+		{
+	
+			for(j=0;j<10;j++)
+			{
+				l[i][j]=Character.toUpperCase(l[i][j]);
+			}
+		}
+		return l;
 	}
 	
 	public Clavier getClavier()
 	{
-		clavier.setClavier(tampon);
+		clavier.setClavier(getTampon());
 		return clavier;
+	}
+	
+	public ArrayList<char[][]> getParcours()
+	{
+		return parcours;
 	}
 	
 	public void getClavierString(char[][] let)
@@ -222,7 +270,5 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 		}
 		System.out.println(s.toString());
 	}
-	
-
 
 }
