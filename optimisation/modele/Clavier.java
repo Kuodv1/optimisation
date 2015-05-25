@@ -46,6 +46,10 @@ public class Clavier {
 		}
 	}
 	
+	public void setClavier(char[][] cla) {
+		this.clavier = cla;
+	}
+	
 	public char[][] getClavier() {
 		return clavier;
 	}

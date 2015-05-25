@@ -1,7 +1,5 @@
 package optimisation.modele.algorithme;
 
-import java.util.ArrayList;
-
 import optimisation.modele.Clavier;
 
 
