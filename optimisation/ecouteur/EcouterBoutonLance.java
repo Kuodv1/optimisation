@@ -24,7 +24,8 @@ public class EcouterBoutonLance implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		
 		int temperature=0;
-		boolean b = true;
+		double lambda=0;
+		boolean b = true,c = true;
 		while(b)
 		{
 			String t; 
@@ -40,9 +41,33 @@ public class EcouterBoutonLance implements ActionListener{
 		    }
 		    
 		}
+		
+		while(c)
+		{
+			String t,s=""; 
+			try
+			{
+				 t = JOptionPane.showInputDialog(null, "Veuillez le nombre lambda(compris entre 0.99 et 1)", "Lambda", JOptionPane.QUESTION_MESSAGE);
+				lambda = Double.parseDouble(t);
+				if(lambda>=1)
+				{
+					JOptionPane.showMessageDialog(null, "Ceci est supérieur à 1 ou égal", "Erreur", JOptionPane.ERROR_MESSAGE);
+				}
+				else
+				{
+					c=false;
+				}
+		
+			}
+		    catch(NumberFormatException e)
+			{
+		    	JOptionPane.showMessageDialog(null, "Veuillez rentrer un lambda exact\n"+s, "Erreur", JOptionPane.ERROR_MESSAGE);
+		    }
+		    
+		}
 	  
-
-	    ars.setTemperature(temperature);
+		ars.setK(lambda);
+	        ars.setTemperature(temperature);
 		ars.recuitSimule();
 		
 		vc.maj();

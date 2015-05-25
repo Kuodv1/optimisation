@@ -4,7 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 
 import optimisation.modele.Modele;
 import optimisation.modele.algorithme.AlgorithmeRecuitSimule;
@@ -19,6 +21,7 @@ public class VueAlgorithmeRecuitSimule extends VueAlgorithme{
 	protected VueClavier vc;
 	protected JButton jb;
 	protected JPanel jp;
+	protected Thread t;
 	
 	protected AlgorithmeRecuitSimule ars;
 	
@@ -41,7 +44,23 @@ public class VueAlgorithmeRecuitSimule extends VueAlgorithme{
 	
 	@Override
 	public void maj() {
-		vc.majClavier(ars.getTampon());
+		 t = new Thread(){
+			public void run() {
+				for(char[][] a : ars.getParcours()){
+					  vc.majClavier(a);
+					  vc.repaint();
+				      jp.repaint(); 
+				      
+				      try {
+				        Thread.sleep(1000);
+				      } catch (InterruptedException e) {
+				        e.printStackTrace();
+				      }
+				    }
+		
+				}
+			
+		};
+		t.start();
 	}
-
 }
