@@ -7,6 +7,7 @@ import optimisation.modele.algorithme.AlgorithmeTabou;
 import optimisation.vue.VueAlgorithme;
 import optimisation.vue.VueClavier;
 import optimisation.vue.VueInfo;
+import optimisation.vue.VueInfoAlgo;
 
 public class VueAlgorithmeTabou extends VueAlgorithme{
 	
@@ -18,7 +19,7 @@ public class VueAlgorithmeTabou extends VueAlgorithme{
 		super(m);
 		at = (AlgorithmeTabou)m.getAlgo();
 		vc = new VueClavier(at.getBestOf());
-		vi = new VueInfo(at,this);
+		vi = new VueInfo(at,this,new VueInfoAlgoTabou(at));
 		this.add(vc,BorderLayout.CENTER);
 		this.add(vi,BorderLayout.EAST);
 	}

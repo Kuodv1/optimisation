@@ -32,16 +32,16 @@ public class VueAlgorithmeRecuitSimule extends VueAlgorithme{
 		
 		this.ars = (AlgorithmeRecuitSimule)m.getAlgo();
 		vc = new VueClavier(ars.getClavier());
-		jb = new JButton("Lance");
+		//jb = new JButton("Lance");
 		jp = new JPanel();
 		
-		jp.add(jb);
+		//jp.add(jb);
 		
-		vi = new VueInfo(ars,this);
+		vi = new VueInfo(ars,this,new VueInfoAlgoRecuit(ars));
 		this.add(vc,BorderLayout.CENTER);
 		this.add(vi,BorderLayout.EAST);
 		
-		jb.addActionListener(new EcouterBoutonLance(ars,this));
+		//jb.addActionListener(new EcouterBoutonLance(ars,this));
 		//this.add(vc,BorderLayout.CENTER);
 		//this.add(jp,BorderLayout.SOUTH);
 		
@@ -55,6 +55,8 @@ public class VueAlgorithmeRecuitSimule extends VueAlgorithme{
 				for(char[][] a : ars.getParcours()){
 					  vc.majClavier(a);
 					  vc.repaint();
+					  vi.maj(ars);
+					  vi.repaint();
 				      jp.repaint(); 
 				      
 				      try {
