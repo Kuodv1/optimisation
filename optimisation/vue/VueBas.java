@@ -38,7 +38,7 @@ public class VueBas extends JPanel implements Observer{
 		}
 		
 		algoList.addActionListener(new ecouteurComboBox(m));
-		add(algoList,BorderLayout.WEST);
+		add(algoList,BorderLayout.CENTER);
 			
 		
 	}

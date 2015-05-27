@@ -6,23 +6,25 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import optimisation.modele.algorithme.Algorithme;
 import optimisation.modele.algorithme.AlgorithmeRecuitSimule;
+import optimisation.vue.VueAlgorithme;
 import optimisation.vue.recuit.VueAlgorithmeRecuitSimule;
 
 public class EcouterBoutonLance implements ActionListener{
 	
-	private AlgorithmeRecuitSimule ars;
-	private VueAlgorithmeRecuitSimule vc;
+	private Algorithme a;
+	private VueAlgorithme va;
 	
-	public EcouterBoutonLance(AlgorithmeRecuitSimule ars,VueAlgorithmeRecuitSimule vc)
+	public EcouterBoutonLance(Algorithme a,VueAlgorithme va)
 	{
-		this.ars = ars;
-		this.vc = vc;
+		this.a = a;
+		this.va = va;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		
+		/*
 		int temperature=0;
 		double lambda=0;
 		boolean b = true,c = true;
@@ -71,7 +73,7 @@ public class EcouterBoutonLance implements ActionListener{
 		ars.recuitSimule();
 		
 		vc.maj();
-		
+		*/
 	}
 	
 	

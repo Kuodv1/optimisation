@@ -12,6 +12,7 @@ import optimisation.modele.Modele;
 import optimisation.modele.algorithme.AlgorithmeRecuitSimule;
 import optimisation.vue.VueAlgorithme;
 import optimisation.vue.VueClavier;
+import optimisation.vue.VueInfo;
 import optimisation.ecouteur.EcouterBoutonLance;
 
 @SuppressWarnings("serial")
@@ -24,6 +25,7 @@ public class VueAlgorithmeRecuitSimule extends VueAlgorithme{
 	protected Thread t;
 	
 	protected AlgorithmeRecuitSimule ars;
+	protected VueInfo vi;
 	
 	public VueAlgorithmeRecuitSimule(Modele m) {
 		super(m);
@@ -35,9 +37,13 @@ public class VueAlgorithmeRecuitSimule extends VueAlgorithme{
 		
 		jp.add(jb);
 		
-		jb.addActionListener(new EcouterBoutonLance(ars,this));
+		vi = new VueInfo(ars,this);
 		this.add(vc,BorderLayout.CENTER);
-		this.add(jp,BorderLayout.SOUTH);
+		this.add(vi,BorderLayout.EAST);
+		
+		jb.addActionListener(new EcouterBoutonLance(ars,this));
+		//this.add(vc,BorderLayout.CENTER);
+		//this.add(jp,BorderLayout.SOUTH);
 		
 		
 	}

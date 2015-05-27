@@ -18,7 +18,7 @@ public class VueAlgorithmeTabou extends VueAlgorithme{
 		super(m);
 		at = (AlgorithmeTabou)m.getAlgo();
 		vc = new VueClavier(at.getBestOf());
-		vi = new VueInfo(at);
+		vi = new VueInfo(at,this);
 		this.add(vc,BorderLayout.CENTER);
 		this.add(vi,BorderLayout.EAST);
 	}
