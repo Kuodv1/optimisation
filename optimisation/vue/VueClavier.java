@@ -18,6 +18,7 @@ public class VueClavier extends JPanel{
 	
 	public VueClavier(Clavier cl) {
 		super(new BorderLayout());
+		//this.setSize(new Dimension(600,300));
 		//this.setPreferredSize(new Dimension(200,50));
 		grid = new GridLayout(4,10);
 		tabLabel = new JLabel[4][10];
