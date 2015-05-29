@@ -49,7 +49,6 @@ public class AlgorithmeTabou implements Algorithme{
 	public AlgorithmeTabou() {
 		bestOf = new Clavier();
 		bestOf.setEnergie(calculEnergie(bestOf.getClavier()));
-		System.out.println("energie "+bestOf.getEnergie());
 		aTraiter = new Clavier();
 		aTraiter.setClavier(bestOf.getClavier());
 		aTraiter.setEnergie(bestOf.getEnergie());
@@ -57,7 +56,7 @@ public class AlgorithmeTabou implements Algorithme{
 		tailleTabou = 25;
 		//valeurTabou = new HashSet<Clavier>(10);
 		listeTabou = new ArrayList<Clavier>(10);
-		limite = 50000;
+		limite = 5000000;
 		fini = false;
 		nbrIte = 0;
 	}
@@ -196,7 +195,6 @@ public class AlgorithmeTabou implements Algorithme{
 	public void setEtatATraiter(ArrayList<Clavier> voisin) {
 		Clavier c = voisin.get(0);
 		if(c.getEnergie()< bestOf.getEnergie()) {
-			System.out.println("ite : "+nbrIte+ "meilleur Element "+c.getEnergie()+" |  "+bestOf.getEnergie());
 			bestOf.setClavier(c.getClavier());
 			bestOf.setEnergie(c.getEnergie());
 		}
@@ -289,6 +287,18 @@ public class AlgorithmeTabou implements Algorithme{
         if(t.contains(c2)) System.out.println("ok4");
         
     }*/
+
+
+	@Override
+	public int getLimite() {
+		return limite;
+	}
+
+
+	@Override
+	public void setLimite(int limite) {
+		this.limite = limite;		
+	}
 
 	
 

@@ -303,5 +303,17 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 		this.refresh = refresh;
 		
 	}
+
+	@Override
+	public int getLimite() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setLimite(int limite) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

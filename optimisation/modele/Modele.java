@@ -23,16 +23,13 @@ public class Modele extends Observable{
 			switch(algo) {
 			case "Algorithme Recuit Simule":
 				this.algo =new AlgorithmeRecuitSimule();
-				System.out.println("Algo Recuit Simule choisi");
 				break;
 	
 			case "Recherche Tabou":
-				System.out.println("Algo Tabou");
 				this.algo = new AlgorithmeTabou();
 				break;
 				
 				default:
-					System.out.println("cas default de Modele.setAlgorithme");
 			}
 			changementAffichage();
 		}

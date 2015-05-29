@@ -11,4 +11,8 @@ public interface Algorithme {
 	public int getRefresh();
 	
 	public void setRefresh(int refresh);
+	
+	public int getLimite();
+	
+	public void setLimite(int limite);
 }
