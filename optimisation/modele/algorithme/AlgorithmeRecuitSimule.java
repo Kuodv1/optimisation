@@ -282,8 +282,8 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 		return k;
 	}
 	
-	public char[][] getTamponFinal() {
-		return tampon;
+	public int getBestObj() {
+		return calculEnergie(tampon);
 	}
 	
 }

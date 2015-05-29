@@ -40,11 +40,8 @@ public class VueInfo extends JPanel {
 	}
 	
 	public void maj(Algorithme a) {
-		if(a.getNom()=="Algorithme Recuit Simule")
-		{
 			ite.setText("Nombre d'itération : "+a.getNbrIte());
-			valFoncObj.setText("Valeur fonction objectif de la meilleur configuration : "+((AlgorithmeRecuitSimule)a).calculEnergie(((AlgorithmeRecuitSimule)a).getTamponFinal()));
-		}
+			valFoncObj.setText("Valeur fonction objectif de la meilleur configuration : "+a.getBestObj());
 
 	}
 }

@@ -1,10 +1,8 @@
 package optimisation.modele.algorithme;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import optimisation.modele.Clavier;
-import optimisation.modele.OptimisationLuncher;
 
 public class AlgorithmeTabou implements Algorithme{
 	
@@ -55,7 +53,7 @@ public class AlgorithmeTabou implements Algorithme{
 		aTraiter.setClavier(bestOf.getClavier());
 		aTraiter.setEnergie(bestOf.getEnergie());
 		aTraiter.setEnergie(calculEnergie(aTraiter.getClavier()));
-		tailleTabou = 100;
+		tailleTabou = 25;
 		//valeurTabou = new HashSet<Clavier>(10);
 		listeTabou = new ArrayList<Clavier>(10);
 		limite = 50000;
@@ -77,6 +75,10 @@ public class AlgorithmeTabou implements Algorithme{
 	
 	public int getNbrIte() {
 		return nbrIte;
+	}
+	
+	public int getBestObj() {
+		return bestOf.getEnergie();
 	}
 	
 	public void setLimiteBoucle(int limite) {
@@ -127,7 +129,6 @@ public class AlgorithmeTabou implements Algorithme{
 		ArrayList<Clavier> voisin = new ArrayList<Clavier>();
 		int tmp = 0;
 		int index = 0;
-		int inc = 0;
 		for(int i = 0; i<4; i++) {
 			for(int j = 0; j<10;j++) {
 				if(aTraiter.possibleGauche(i,j)){
@@ -139,7 +140,6 @@ public class AlgorithmeTabou implements Algorithme{
 						if(voisin.get(index).getEnergie()>tmp){
 							index = voisin.size()-1;
 						}
-						inc++;
 					}
 				}
 				if(aTraiter.possibleHaut(i, j)) {
@@ -151,7 +151,6 @@ public class AlgorithmeTabou implements Algorithme{
 						if(voisin.get(index).getEnergie()>tmp){
 							index = voisin.size()-1;
 						}
-						inc++;
 					}
 				}
 				if(aTraiter.possibleDroit(i, j)) {
@@ -163,7 +162,6 @@ public class AlgorithmeTabou implements Algorithme{
 						if(voisin.get(index).getEnergie()>tmp){
 							index = voisin.size()-1;
 						}
-						inc++;
 					}
 				}
 				if(aTraiter.possibleBas(i, j)) {
@@ -175,12 +173,10 @@ public class AlgorithmeTabou implements Algorithme{
 						if(voisin.get(index).getEnergie()>tmp){
 							index = voisin.size()-1;
 						}
-						inc++;
 					}
 				}
 			}
 		}
-		System.out.println(inc+ " " +voisin.size());
 		voisin.get(0).setClavier(voisin.get(index).getClavier());
 		return voisin;
 	}

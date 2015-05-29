@@ -5,6 +5,6 @@ public interface Algorithme {
 	public String getNom();
 
 	public int getNbrIte();
-	
-	public int calculEnergie(char[][] t);
+
+	public int getBestObj();
 }
