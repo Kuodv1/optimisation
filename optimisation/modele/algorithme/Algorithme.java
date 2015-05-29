@@ -7,4 +7,8 @@ public interface Algorithme {
 	public int getNbrIte();
 
 	public int getBestObj();
+	
+	public int getRefresh();
+	
+	public void setRefresh(int refresh);
 }

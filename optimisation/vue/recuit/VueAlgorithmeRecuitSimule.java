@@ -60,7 +60,7 @@ public class VueAlgorithmeRecuitSimule extends VueAlgorithme{
 				      jp.repaint(); 
 				      
 				      try {
-				        Thread.sleep(1000);
+				        Thread.sleep(ars.getRefresh());
 				      } catch (InterruptedException e) {
 				        e.printStackTrace();
 				      }

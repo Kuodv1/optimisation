@@ -42,7 +42,9 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 								{' ','r','k','p','v','j','n','b',' ',' '},
 							  };
 	private int energie;
+	protected int refresh;
 	private double temperature;
+	protected int ite;
 	private double tps = 0;
 	private double k;
 	private ArrayList<char[][]> parcours;
@@ -57,21 +59,25 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 	public AlgorithmeRecuitSimule() {
 		this.temperature = 10000;
 		this.energie = 0;
+		ite = 0;
 		this.clavier = new Clavier();
-		this.tps = 50000;
+		this.tps = 30000;
+		k = 0.99;
 		this.parcours = new ArrayList<char[][]>();
 	}
 	
 	public AlgorithmeRecuitSimule(int temperature) {
 		this.temperature = temperature;
+		k = 0.99;
 		this.energie = 0;
+		ite = 0;
 		this.clavier = new Clavier();
 		this.tps = 30000;
 		this.parcours = new ArrayList<char[][]>();
 	}
 	
 	public int getNbrIte() {
-		return 1;
+		return ite;
 	}
 	
 	public void recuitSimule()
@@ -81,6 +87,7 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 		int temps = 0;
 		int e = calculEnergie(s);
 		int en=0;
+		ite = 0;
 		double t = temperature/10;
 		
 		while(t<=temperature && temps<tps)
@@ -100,7 +107,7 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 			}
 			temps+=1;
 			temperature*=k;
-			
+			ite++;
 		}
 	}
 	
@@ -284,6 +291,17 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 	
 	public int getBestObj() {
 		return calculEnergie(tampon);
+	}
+
+	@Override
+	public int getRefresh() {
+		return refresh;
+	}
+
+	@Override
+	public void setRefresh(int refresh) {
+		this.refresh = refresh;
+		
 	}
 	
 }

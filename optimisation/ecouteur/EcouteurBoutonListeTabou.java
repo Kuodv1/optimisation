@@ -26,7 +26,7 @@ public class EcouteurBoutonListeTabou implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		JPanel redim = new JPanel(new GridLayout(1,2));
-		redim.add(new JLabel("Nouvelle taille liste Tabou : (min 1, max 100) : "));
+		redim.add(new JLabel("Nouvelle taille liste Tabou : (min 1) : "));
 		redim.add(taille);
 		int result = JOptionPane.showConfirmDialog(null, redim, 
 		"Nouvelle taille", JOptionPane.OK_CANCEL_OPTION);//Fenetre 1 : Recupere taille souhaite.
@@ -35,7 +35,6 @@ public class EcouteurBoutonListeTabou implements ActionListener{
 			try {
 				nbrCase = Integer.parseInt(taille.getText());
 					if(nbrCase<1) { nbrCase = 1; }
-					if(nbrCase>100) { nbrCase = 100;}
 					at.setTailleTabou(nbrCase);
 					jl.setText(": "+at.getTailleTabou());
 			} catch(NumberFormatException nfe) {

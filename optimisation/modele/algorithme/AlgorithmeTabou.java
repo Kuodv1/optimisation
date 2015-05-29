@@ -36,6 +36,7 @@ public class AlgorithmeTabou implements Algorithme{
 							};
 	
 	protected Clavier bestOf;
+	protected int refresh;
 	protected Clavier aTraiter;
 	protected int limite;
 	protected int nbrIte;
@@ -195,12 +196,13 @@ public class AlgorithmeTabou implements Algorithme{
 	public void setEtatATraiter(ArrayList<Clavier> voisin) {
 		Clavier c = voisin.get(0);
 		if(c.getEnergie()< bestOf.getEnergie()) {
-			System.out.println("meilleur Element "+c.getEnergie()+" |  "+bestOf.getEnergie());
+			System.out.println("ite : "+nbrIte+ "meilleur Element "+c.getEnergie()+" |  "+bestOf.getEnergie());
 			bestOf.setClavier(c.getClavier());
 			bestOf.setEnergie(c.getEnergie());
 		}
 		aTraiter.setClavier(c.getClavier());
 		aTraiter.setEnergie(c.getEnergie());
+		ajoutClavierTabou(c);
 	}
 	
 	public void tabou() {
@@ -264,6 +266,14 @@ public class AlgorithmeTabou implements Algorithme{
 		return valRetour;
 	}
 	
+	
+	public void setRefresh(int refresh){
+		this.refresh = refresh;
+	}
+	
+	public int getRefresh() {
+		return refresh;
+	}
  /*   public static void main(String[] args) {
         AlgorithmeTabou at = new AlgorithmeTabou();
         Clavier c1 = new Clavier();
@@ -279,5 +289,7 @@ public class AlgorithmeTabou implements Algorithme{
         if(t.contains(c2)) System.out.println("ok4");
         
     }*/
+
+	
 
 }

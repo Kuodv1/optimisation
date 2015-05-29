@@ -46,7 +46,7 @@ public class VueAlgorithmeTabou extends VueAlgorithme{
 					vi.repaint();
 					
 				      try {
-					        Thread.sleep(100);
+					        Thread.sleep(at.getRefresh());
 					      } catch (InterruptedException e) {
 					        e.printStackTrace();
 					      }
