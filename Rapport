@@ -1,0 +1,82 @@
+                                                    Optimisation
+MOUGIN Louis
+MARCHAL Anthony
+
+
+                                                      Recuit Simulé
+
+Configuration représentée par un tableau de 4 lignes, 10 colonnes, comprenant 26 cases représentant les lettres de l'alphabet  et 14 cases vides.
+
+Taille de l'espace de recherche : 40! - 14 !
+
+Fonction objectif :
+ Somme pour chaque lettre des ( Somme pour chaque bigramme associé à le lettre des ( distance entre 2 lettres d'un bigramme * nb occurrence de ce bigramme ))
+
+Mouvements : 
+échange de 2 cases aléatoires.
+
+Pour améliorer cet algorithme, il nécessite d'utiliser des mouvements « intelligents » afin de maximiser le nombre de « bon » déplacements. 
+
+Une des meilleurs solutions trouvée avec notre déplacement : 
+
+|  |  |A|L|E|Y|D|  |    |  |
+|  |C|Z|P|S|N|G|  |    |  |
+|  |  |V|U|T|I|    |  H| W|  |
+|  | F|R|Q|M|O|X|B|K| J |
+
+Trouvé en 92125 itérations, 30000 itérations autorisées sans amélioration
+Énergie à 268 884. 
+Température initiale à 100000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                      Recherche Tabou
+
+
+Configuration représentée par un tableau de 4 lignes, 10 colonnes, comprenant 26 cases représentant les lettres de l'alphabet et 14 cases vides.
+
+Taille de l'espace de recherche : 40! - 14 !
+
+Fonction objectif : 
+
+La fonction objectif est la même que celle du recuit simulé.
+
+Mouvement : 
+Choix du meilleur voisin parmi n ou n étant la liste des 26*4 voisins ( 4 voisins de chaque lettre ) .
+
+Temps d’exécution de la recherche tabou dépend de la taille de la liste tabou que l'on lui attribut et celui-ci  peut devenir très long.
+
+
+
+
+Meilleur solution trouvée avec notre déplacement :
+
+|  |  |A|L|E|Y |D |  |  |  |
+|  |Z|M|Q|T|O|S|C|W| |
+|  |I |F |B|U |  |R|  |  |K|
+|  |H|J|N|V|  |  |P|G|X |
+
+Trouvé en 459 itérations
+Énergie à 329360. 
+Taille de la liste Tabou : 4
