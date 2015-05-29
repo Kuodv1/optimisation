@@ -17,7 +17,7 @@ public class VueInfo extends JPanel {
 	VueInfoAlgo via;
 	Algorithme a;
 	JLabel ite;
-	JLabel valFoncObj;
+     JLabel valFoncObj;
 	JButton jb;
 	
 	public VueInfo(Algorithme a, VueAlgorithme va, VueInfoAlgo via) {
@@ -27,8 +27,8 @@ public class VueInfo extends JPanel {
 		gl = new GridLayout(5,1);
 		setLayout(gl);
 		JLabel nomAlgo = new JLabel("Algorithme courant : "+a.getNom());
-		ite = new JLabel("Nombre d'itération : ");
-		JLabel valFoncObj = new JLabel("Valeur fonction objectif de la meilleur configuration : ");
+		 ite = new JLabel("Nombre d'itération : ");
+		valFoncObj = new JLabel("Valeur fonction objectif de la meilleur configuration : ");
 		this.add(via);
 		this.add(nomAlgo);
 		this.add(ite);
@@ -39,8 +39,11 @@ public class VueInfo extends JPanel {
 	}
 	
 	public void maj(Algorithme a) {
-		via.maj();
-		ite.setText("Nombre d'itération : "+a.getNbrIte());
-		//valFoncObj.setText("Valeur fonction objectif de la meilleur configuration : "+"a.getValConfigCourante()");
+		if(a.getNom()=="Algorithme Recuit Simule")
+		{
+			ite.setText("Nombre d'itération : "+a.getNbIteration());
+			valFoncObj.setText("Valeur fonction objectif de la meilleur configuration : "+a.calculEnergie(a.getTamponFinal()));
+		}
+
 	}
 }
