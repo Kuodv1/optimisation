@@ -32,6 +32,10 @@ public class VueInfoAlgoRecuit extends VueInfoAlgo{
 		temperature.addActionListener(new EcouterBoutonTemperature(m,this));
 		k.addActionListener(new EcouterBoutonK(m,this));
 		
+		temperature.setToolTipText("Permet de varier la valeur de la température");
+		k.setToolTipText("Permet de varier la valeur lambda");
+		
+		
 		grid = new GridLayout(2,2);
 		this.setLayout(grid);
 		
