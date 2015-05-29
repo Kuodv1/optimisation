@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import optimisation.modele.Clavier;
+import optimisation.modele.OptimisationLuncher;
 
 public class AlgorithmeTabou implements Algorithme{
 	
@@ -48,7 +49,12 @@ public class AlgorithmeTabou implements Algorithme{
 	
 	public AlgorithmeTabou() {
 		bestOf = new Clavier();
-		aTraiter = bestOf;
+		bestOf.setEnergie(calculEnergie(bestOf.getClavier()));
+		System.out.println("energie "+bestOf.getEnergie());
+		aTraiter = new Clavier();
+		aTraiter.setClavier(bestOf.getClavier());
+		aTraiter.setEnergie(bestOf.getEnergie());
+		aTraiter.setEnergie(calculEnergie(aTraiter.getClavier()));
 		tailleTabou = 100;
 		//valeurTabou = new HashSet<Clavier>(10);
 		listeTabou = new ArrayList<Clavier>(10);
@@ -119,129 +125,86 @@ public class AlgorithmeTabou implements Algorithme{
 	
 	public ArrayList<Clavier> getVoisin() {
 		ArrayList<Clavier> voisin = new ArrayList<Clavier>();
-		Clavier c;
-		int[] tabIndex = new int[tailleTabou+1];
-		for(int k = 0; k<tailleTabou+1; k++) tabIndex[k] = -1;
+		int tmp = 0;
+		int index = 0;
+		int inc = 0;
 		for(int i = 0; i<4; i++) {
 			for(int j = 0; j<10;j++) {
 				if(aTraiter.possibleGauche(i,j)){
-					c = new Clavier();
+					Clavier c = new Clavier();
 					c.setClavier(aTraiter.getClavier());
 					c.echangeGauche(i, j);
-					ajoutVoisin(voisin,c);
-					majTableauIndex(voisin, tabIndex, voisin.size()-1,c.getEnergie());
+					if(ajoutVoisin(voisin,c)){
+						tmp = c.getEnergie();
+						if(voisin.get(index).getEnergie()>tmp){
+							index = voisin.size()-1;
+						}
+						inc++;
+					}
 				}
 				if(aTraiter.possibleHaut(i, j)) {
-					c = new Clavier();
+					Clavier c = new Clavier();
 					c.setClavier(aTraiter.getClavier());
 					c.echangeHaut(i, j);
-					ajoutVoisin(voisin,c);
-					majTableauIndex(voisin, tabIndex, voisin.size()-1,c.getEnergie());
+					if(ajoutVoisin(voisin,c)){
+						tmp = c.getEnergie();
+						if(voisin.get(index).getEnergie()>tmp){
+							index = voisin.size()-1;
+						}
+						inc++;
+					}
 				}
 				if(aTraiter.possibleDroit(i, j)) {
-					c = new Clavier();
+					Clavier c = new Clavier();
 					c.setClavier(aTraiter.getClavier());
 					c.echangeDroit(i, j);
-					ajoutVoisin(voisin,c);
-					majTableauIndex(voisin, tabIndex, voisin.size()-1,c.getEnergie());
+					if(ajoutVoisin(voisin,c)){
+						tmp = c.getEnergie();
+						if(voisin.get(index).getEnergie()>tmp){
+							index = voisin.size()-1;
+						}
+						inc++;
+					}
 				}
 				if(aTraiter.possibleBas(i, j)) {
-					c = new Clavier();
+					Clavier c = new Clavier();
 					c.setClavier(aTraiter.getClavier());
 					c.echangeBas(i, j);
-					ajoutVoisin(voisin,c);
-					majTableauIndex(voisin, tabIndex, voisin.size()-1,c.getEnergie());
+					if(ajoutVoisin(voisin,c)){
+						tmp = c.getEnergie();
+						if(voisin.get(index).getEnergie()>tmp){
+							index = voisin.size()-1;
+						}
+						inc++;
+					}
 				}
 			}
 		}
-		
-		//rangement des elements les plus interessants en debut de liste
-		ordonneeVoisin(voisin, tabIndex);
-		
+		System.out.println(inc+ " " +voisin.size());
+		voisin.get(0).setClavier(voisin.get(index).getClavier());
 		return voisin;
 	}
 	
-	public int ajoutVoisin(ArrayList<Clavier> voisin, Clavier c){
-		int energie = Integer.MAX_VALUE;
-		if(!voisin.contains(c)) {
-			voisin.add(c);
-			energie = this.calculEnergie(c.getClavier());
-			c.setEnergie(energie);
-			
-		}
-		return energie;
-	}
-	
-	//tmp = energie du clavier a l index index
-	public void majTableauIndex(ArrayList<Clavier> voisin, int[] tailleIndexTabou, int index, int tmp) {
+	public boolean ajoutVoisin(ArrayList<Clavier> voisin, Clavier c){
 		boolean place = false;
-		//si l'energie du clavier place en tailleIndexTabou ème du tableau est plus grande 
-		// que l'energie trouvé par le dernier élement ajouté, alors on peut 
-		// travailler et décallé les index en fonction de l'energie
-		int k = tailleIndexTabou.length-1;
-		while(k>0 && tailleIndexTabou[k]==-1) k--;
-		
-		if(k!= tailleIndexTabou.length-1){
-			int i = k;
-			while(!place && i>0) {
-				if(voisin.get(tailleIndexTabou[i]).getEnergie() > tmp) i--;
-				else {
-					place = true;
-					i++;
-				}
-			}
-			
-			for(int j = tailleIndexTabou.length-1; j>i;j--) {
-				tailleIndexTabou[j] = tailleIndexTabou[j-1];
-			}
-			tailleIndexTabou[i] = index;
+		if(!voisin.contains(c) && !presentTabou(c)) {
+			voisin.add(c);
+			c.setEnergie(calculEnergie(c.getClavier()));
 			place = true;
 		}
-		
-		if(!place && voisin.get(tailleIndexTabou[tailleIndexTabou.length-1]).getEnergie() > tmp) {
-			int i = tailleIndexTabou.length-2;
-			while(!place && i>0) {
-				if(voisin.get(tailleIndexTabou[i]).getEnergie() > tmp) i--;
-				else {
-					place = true;
-					i++;
-				}
-			}
-			
-			for(int j = tailleIndexTabou.length-1; j>i;j--) {
-				tailleIndexTabou[j] = tailleIndexTabou[j-1];
-			}
-			tailleIndexTabou[i] = index;
-		}
+		return place;
 	}
-	
-	
-	public void ordonneeVoisin(ArrayList<Clavier> voisin, int[] tabIndex) {
-		Clavier c = new Clavier();
-		for(int i = 0; i<tabIndex.length;i++) {
-			if(tabIndex[i]!=-1){
-				c.setClavier(voisin.get(i).getClavier());
-				voisin.get(i).setClavier(voisin.get(tabIndex[i]).getClavier());
-				voisin.get(tabIndex[i]).setClavier(c.getClavier());
-			}
-		}
-	}
-	
+
+
 	public void setEtatATraiter(ArrayList<Clavier> voisin) {
-		int i = 1;
-		boolean changer = false;
-		if(listeTabou.contains(voisin.get(0))) {
-			while(!changer && i<tailleTabou+2) {
-				if(listeTabou.contains(voisin.get(i))) i++;
-				else {
-					changer = true;
-					aTraiter = voisin.get(i);
-				}
-			}
-		} else {
-			bestOf = voisin.get(0);
-			aTraiter = voisin.get(0);
+		Clavier c = voisin.get(0);
+		if(c.getEnergie()< bestOf.getEnergie()) {
+			System.out.println("meilleur Element "+c.getEnergie()+" |  "+bestOf.getEnergie());
+			bestOf.setClavier(c.getClavier());
+			bestOf.setEnergie(c.getEnergie());
 		}
+		aTraiter.setClavier(c.getClavier());
+		aTraiter.setEnergie(c.getEnergie());
 	}
 	
 	public void tabou() {
@@ -276,8 +239,9 @@ public class AlgorithmeTabou implements Algorithme{
 	
 	public double distance(int i,int j,char[][] let)
 	{
-		char a = (char)(i+97);
-		char b = (char)(j+97);
+		int valRetour = 0;
+		char a = (char)(i+65);
+		char b = (char)(j+65);
 		int x,y,x1=0,x2=0,y1=0,y2=0;
 		if(a!=b)
 		{
@@ -299,14 +263,25 @@ public class AlgorithmeTabou implements Algorithme{
 				}
 
 			}
-			
+			valRetour = Math.abs((Math.abs(x1-x2)+Math.abs(y1-y2)));
 		}
-		else
-		{
-			return 0;
-		}
-		
-		return Math.abs((Math.abs(x1-x2)+Math.abs(y1-y2)));
+		return valRetour;
 	}
+	
+ /*   public static void main(String[] args) {
+        AlgorithmeTabou at = new AlgorithmeTabou();
+        Clavier c1 = new Clavier();
+        Clavier c2 = new Clavier();
+        Clavier c3 = new Clavier();
+        
+        ArrayList<Clavier> t = new ArrayList<Clavier>();
+        t.add(c1);
+        if(t.contains(c1)) System.out.println("ok");
+        c2.setClavier(c1.getClavier());
+        if(t.contains(c2)) System.out.println("ok2");
+        if(c2.possibleBas(2, 2)) {c2.echangeBas(2, 2);System.out.println("ok3");}
+        if(t.contains(c2)) System.out.println("ok4");
+        
+    }*/
 
 }

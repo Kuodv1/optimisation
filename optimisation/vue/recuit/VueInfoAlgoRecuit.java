@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import optimisation.ecouteur.EcouterBoutonK;
 import optimisation.ecouteur.EcouterBoutonTemperature;
 import optimisation.modele.algorithme.Algorithme;
+import optimisation.modele.algorithme.AlgorithmeRecuitSimule;
 import optimisation.vue.VueInfoAlgo;
 
 @SuppressWarnings("serial")
@@ -26,8 +27,8 @@ public class VueInfoAlgoRecuit extends VueInfoAlgo{
 		
 		this.temperature = new JButton("Température");
 		this.k = new JButton("Lambda");
-		this.jTemperature = new JLabel("Température : "+m.getTemperature());
-		this.jK = new JLabel("Lambda : "+m.getK());
+		this.jTemperature = new JLabel("Température : "+((AlgorithmeRecuitSimule)m).getTemperature());
+		this.jK = new JLabel("Lambda : "+((AlgorithmeRecuitSimule)m).getK());
 		
 		temperature.addActionListener(new EcouterBoutonTemperature(m,this));
 		k.addActionListener(new EcouterBoutonK(m,this));
@@ -49,8 +50,8 @@ public class VueInfoAlgoRecuit extends VueInfoAlgo{
 
 	@Override
 	public void maj() {
-		jTemperature.setText(("Température : "+m.getTemperature()));
-		jK.setText(("Lambda : "+m.getK()));
+		jTemperature.setText(("Température : "+((AlgorithmeRecuitSimule)m).getTemperature()));
+		jK.setText(("Lambda : "+((AlgorithmeRecuitSimule)m).getK()));
 		
 	}
 

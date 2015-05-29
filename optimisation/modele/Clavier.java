@@ -52,7 +52,9 @@ public class Clavier {
 	}
 	
 	public void setClavier(char[][] cla) {
-		this.clavier = cla;
+		for(int i = 0; i<4;i++) {
+			clavier[i] = cla[i].clone();
+		}
 	}
 	
 	public char[][] getClavier() {
@@ -124,7 +126,7 @@ public class Clavier {
 	}
 	
 	public boolean equals(Object test) {
-		char[][] aTest = ((Clavier)test).getClavier();
+		/*char[][] aTest = ((Clavier)test).getClavier();
 		boolean diff = false;
 		int i = 0;
 		int y = 0;
@@ -136,7 +138,7 @@ public class Clavier {
 			}
 			i++;
 		}
-		return diff;
-		//return Arrays.deepEquals(getClavier(),((Clavier)test).getClavier());
+		return diff;*/
+		return Arrays.deepEquals(getClavier(),((Clavier)test).getClavier());
 	}
 }

@@ -34,12 +34,10 @@ public class VueAlgorithmeTabou extends VueAlgorithme{
 			}
 		 };
 		t.start();
-		System.out.println("ta mère");
-		System.out.println("coucou");
+
 		 Thread t2 = new Thread(){
 			public void run() {
 				while((!at.estFini())) {
-					System.out.println("je boucle");
 					vc.majClavier(at.getBestOf().getClavier());
 					vc.repaint();
 					vc.validate();
@@ -48,13 +46,19 @@ public class VueAlgorithmeTabou extends VueAlgorithme{
 					vi.repaint();
 					
 				      try {
-					        Thread.sleep(100);
+					        Thread.sleep(1000);
 					      } catch (InterruptedException e) {
 					        e.printStackTrace();
 					      }
 					
 					
 				}
+				vc.majClavier(at.getBestOf().getClavier());
+				vc.repaint();
+				vc.validate();
+				vi.maj(at);
+				vi.validate();
+				vi.repaint();
 			}
 		 };
 		t2.start();

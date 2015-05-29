@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import optimisation.modele.Modele;
 import optimisation.modele.algorithme.Algorithme;
+import optimisation.modele.algorithme.AlgorithmeRecuitSimule;
 import optimisation.vue.recuit.VueInfoAlgoRecuit;
 
 public class EcouterBoutonK implements ActionListener{
@@ -39,7 +40,7 @@ public class EcouterBoutonK implements ActionListener{
 				else
 				{
 					c=false;
-					m.setK(lambda);
+					((AlgorithmeRecuitSimule)m).setK(lambda);
 				}
 		
 			}

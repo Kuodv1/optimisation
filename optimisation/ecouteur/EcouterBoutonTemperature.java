@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import optimisation.modele.Modele;
 import optimisation.modele.algorithme.Algorithme;
+import optimisation.modele.algorithme.AlgorithmeRecuitSimule;
 import optimisation.vue.recuit.VueInfoAlgoRecuit;
 
 public class EcouterBoutonTemperature implements ActionListener{
@@ -32,7 +33,7 @@ public class EcouterBoutonTemperature implements ActionListener{
 			{
 				 t = JOptionPane.showInputDialog(null, "Veuillez rentrer une température", "Temperature", JOptionPane.QUESTION_MESSAGE);
 				temperature = Integer.parseInt(t);
-				m.setTemperature(temperature);
+				((AlgorithmeRecuitSimule)m).setTemperature(temperature);
 				b=false;
 			}
 		    catch(NumberFormatException e)

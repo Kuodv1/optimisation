@@ -274,4 +274,16 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 		System.out.println(s.toString());
 	}
 
+	public double getTemperature() {
+		return temperature;
+	}
+	
+	public double getK() {
+		return k;
+	}
+	
+	public char[][] getTamponFinal() {
+		return tampon;
+	}
+	
 }

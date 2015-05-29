@@ -27,12 +27,12 @@ public class EcouterBoutonLance implements ActionListener{
 		
 		if(a.getNom()=="Algorithme Recuit Simule")
 		{
-			a.getAlgorithmeRecuitSimule().recuitSimule();
+			((AlgorithmeRecuitSimule)a).recuitSimule();
 			va.maj();
 		}
 		else if(a.getNom()=="Recherche Tabou")
 		{
-			
+			va.maj();
 		}
 		else
 		{

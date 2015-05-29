@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import optimisation.ecouteur.EcouterBoutonLance;
 import optimisation.modele.algorithme.Algorithme;
+import optimisation.modele.algorithme.AlgorithmeRecuitSimule;
 
 public class VueInfo extends JPanel {
 
@@ -41,8 +42,8 @@ public class VueInfo extends JPanel {
 	public void maj(Algorithme a) {
 		if(a.getNom()=="Algorithme Recuit Simule")
 		{
-			ite.setText("Nombre d'itération : "+a.getNbIteration());
-			valFoncObj.setText("Valeur fonction objectif de la meilleur configuration : "+a.calculEnergie(a.getTamponFinal()));
+			ite.setText("Nombre d'itération : "+a.getNbrIte());
+			valFoncObj.setText("Valeur fonction objectif de la meilleur configuration : "+((AlgorithmeRecuitSimule)a).calculEnergie(((AlgorithmeRecuitSimule)a).getTamponFinal()));
 		}
 
 	}
