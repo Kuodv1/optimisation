@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 
 import optimisation.modele.algorithme.Algorithme;
 import optimisation.modele.algorithme.AlgorithmeRecuitSimule;
+import optimisation.modele.algorithme.AlgorithmeTabou;
 import optimisation.vue.VueAlgorithme;
 import optimisation.vue.recuit.VueAlgorithmeRecuitSimule;
 
@@ -74,6 +75,7 @@ public class EcouterBoutonLance implements ActionListener{
 		
 		vc.maj();
 		*/
+		va.maj();
 	}
 	
 	

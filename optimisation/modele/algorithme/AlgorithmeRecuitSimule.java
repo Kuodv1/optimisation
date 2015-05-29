@@ -70,6 +70,9 @@ public class AlgorithmeRecuitSimule implements Algorithme{
 		this.parcours = new ArrayList<char[][]>();
 	}
 	
+	public int getNbrIte() {
+		return 1;
+	}
 	
 	public void recuitSimule()
 	{

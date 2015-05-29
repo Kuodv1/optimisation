@@ -27,7 +27,7 @@ public class VueInfo extends JPanel {
 		gl = new GridLayout(5,1);
 		setLayout(gl);
 		JLabel nomAlgo = new JLabel("Algorithme courant : "+a.getNom());
-		JLabel ite = new JLabel("Nombre d'itération : ");
+		ite = new JLabel("Nombre d'itération : ");
 		JLabel valFoncObj = new JLabel("Valeur fonction objectif de la meilleur configuration : ");
 		this.add(via);
 		this.add(nomAlgo);
@@ -40,7 +40,7 @@ public class VueInfo extends JPanel {
 	
 	public void maj(Algorithme a) {
 		via.maj();
-		ite.setText("Nombre d'itération : "+"a.getNbrIte()");
-		valFoncObj.setText("Valeur fonction objectif de la meilleur configuration : "+"a.getValConfigCourante()");
+		ite.setText("Nombre d'itération : "+a.getNbrIte());
+		//valFoncObj.setText("Valeur fonction objectif de la meilleur configuration : "+"a.getValConfigCourante()");
 	}
 }
